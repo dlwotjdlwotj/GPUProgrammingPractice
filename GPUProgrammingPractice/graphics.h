@@ -38,7 +38,7 @@ void setVertex() {
 		0 , -0.7 , 0 ,
 		0.7 , -0.7 , 0 };
 	glGenBuffers(1, &triangleVB); // vertex buffer 생성
-	glBindBuffer(GL_ARRAY_BUFFER, triangleVB);
+	glBindBuffer(GL_ARRAY_BUFFER, triangleVB); 
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 18, v, GL_STATIC_DRAW); // trianbleVB에 데이터 복사
 
 	glGenVertexArrays(1, &vertexArrayID);
@@ -112,7 +112,7 @@ void transform() {
 		0, 0, 1);
 
 	mat3 finalMat = scaleMat * rotMat;
-
+	
 	GLuint loc = glGetUniformLocation(program, "transform");
 	glUniformMatrix3fv(loc, 1, 0, glm::value_ptr(finalMat));
 }
@@ -136,7 +136,7 @@ void setCameraPosition(int width, int height) {
 	glUniformMatrix4fv(viewMatLocation, 1, GL_FALSE, &viewMat[0][0]);
 
 	// projection
-	float aspect = (float)width / (float)height;
+	float aspect = (float) width / (float) height;
 	mat4 projMat = perspective(fov, aspect, 0.01f, 100.0f);
 	GLuint projMatLocation = glGetUniformLocation(program, "projMat");
 	glUniformMatrix4fv(projMatLocation, 1, GL_FALSE, &projMat[0][0]);

@@ -133,6 +133,9 @@
     <ClCompile Include="GPUProgrammingPractice.cpp" />
     <ClCompile Include="j3a.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="graphics.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

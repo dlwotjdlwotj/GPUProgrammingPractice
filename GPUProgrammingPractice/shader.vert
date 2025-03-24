@@ -6,12 +6,15 @@ layout(location=2) in vec3 in_Normal;
 
 out vec2 texCoord;
 out vec3 normal;
+flat out vec3 color;
 
 uniform mat4 viewMat = mat4(1,0,0,0,0,1,0,0,0,0,1,0,0,0,-3,1);
 uniform mat4 projMat = mat4(1.299038, 0, 0, 0, 0, 1.732051, 0, 0, 0, 0, -1.002002, -1.0, 0, 0, -0.2002, 0);
 uniform mat4 modelMat = mat4(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1);
 
 uniform mat3 transform;
+
+vec3 lightDir = {1, 2, 3};
 
 vec2 p2;
 
@@ -33,4 +36,7 @@ void main(void) {
 	gl_Position = getWorldPos(vec4(in_Position, 1.0));
 	texCoord = in_TexCoord;
 	normal = getNormal();
+
+	color = vec3(0.7f, 1.0f, 0.0f);
+	color *= dot(lightDir, normal);
 }
