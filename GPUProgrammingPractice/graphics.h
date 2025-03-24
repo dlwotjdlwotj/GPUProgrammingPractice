@@ -140,6 +140,10 @@ void setCameraPosition(int width, int height) {
 	mat4 projMat = perspective(fov, aspect, 0.01f, 100.0f);
 	GLuint projMatLocation = glGetUniformLocation(program, "projMat");
 	glUniformMatrix4fv(projMatLocation, 1, GL_FALSE, &projMat[0][0]);
+
+	//camera vector
+	GLuint camPosLoc = glGetUniformLocation(program, "cameraPos");
+	glUniform3f(camPosLoc, cameraPos.x, cameraPos.y, cameraPos.z);
 }
 
 void mouseButtonCB(GLFWwindow* window, int button, int action, int mods) { //클릭 확인
