@@ -16,8 +16,8 @@ uniform mat3 transform;
 
 uniform vec3 cameraPos;
 
-vec3 lightPos = {1, 2, 3};
-vec3 lightDir;
+vec3 lightPos[2] = {vec3(1, 2, 3), vec3(1, -2, -3)};
+vec3 lightDir[2];
 
 //light intensity
 vec3 La = vec3(0.3, 0.3, 0.1);
@@ -53,30 +53,32 @@ vec3 ambient(){
 	return La * Ka;
 }
 
-vec3 diffuse(){
-	return dot(lightDir, normal) * Ld * Kd;
+vec3 diffuse(int i){
+	return dot(lightDir[i], normal) * Ld * Kd;
 }
 
-vec3 specular(){
+vec3 specular(int i){
 	vec3 fragPos = (modelMat * vec4(in_Position, 1.0)).xyz;
 	vec3 viewDir = normalize(cameraPos - fragPos);
-	vec3 r = reflect(-lightDir, normal);
+	vec3 r = reflect(-lightDir[i], normal);
 	float f = pow(max(dot(r, viewDir), 0), shininess);
 	return f * Ls * Ks;
 }
 
-vec3 gouraud(){
-	return ambient() + diffuse() + specular();
+vec3 gouraud(int i){
+	return ambient() + diffuse(i) + specular(i);
 }
 
 void main(void) {
-	lightDir = lightPos - in_Position;
+	lightDir[0] = lightPos[0] - in_Position;
+	lightDir[1] = lightPos[1] - in_Position;
 
 	gl_Position = getWorldPos(vec4(in_Position, 1.0));
 	texCoord = in_TexCoord;
 	normal = getNormal();
 	//gouraud shading
-	lightDir = normalize(lightDir);
-	vec3 I = gouraud();
+	lightDir[0] = normalize(lightDir[0]);
+	lightDir[1] = normalize(lightDir[1]);
+	vec3 I = gouraud(0) + gouraud(1);
 	color = I * vec3(1.0f, 1.0f, 0.0f);
 }

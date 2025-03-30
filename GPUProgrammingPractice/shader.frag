@@ -10,10 +10,5 @@ const float scale = 20.0;
 
 void main(void)
 {
-	bvec2 toDiscard = greaterThan(fract(texCoord * scale), vec2(0.1, 0.1));
-	if(all(toDiscard)){
-		discard;
-	}
-	else
-		out_Color = vec4(color, 1.0);
+	out_Color = vec4(color, 1.0);
 }
