@@ -11,3 +11,8 @@ gouraud shading
 blinn-phong reflection
 
 ![Image](https://github.com/user-attachments/assets/8dc96878-075e-4a57-98a0-a0856cb60ebd)
+
+
+perforated look
+
+![Image](https://github.com/user-attachments/assets/e1139f4c-feaf-4bc3-a065-09b46320c79e)
