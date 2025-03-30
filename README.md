@@ -16,3 +16,8 @@ blinn-phong reflection
 perforated look
 
 ![Image](https://github.com/user-attachments/assets/e1139f4c-feaf-4bc3-a065-09b46320c79e)
+
+
+multiple lights
+
+![Image](https://github.com/user-attachments/assets/02a04a24-6f63-4851-9a90-52544214afca)
