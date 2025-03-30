@@ -4,6 +4,7 @@ GLuint program = 0;
 GLuint triangleVB = 0;
 GLuint vertexArrayID = 0;
 GLuint indexID = 0;
+GLuint texcoordVB;
 GLuint normalVB = 0;
 
 float transformAngle = 0.0f;

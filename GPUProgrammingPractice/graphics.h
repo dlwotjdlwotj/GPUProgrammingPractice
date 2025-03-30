@@ -16,6 +16,7 @@ extern GLuint program;
 extern GLuint triangleVB;
 extern GLuint vertexArrayID;
 extern GLuint indexID;
+extern GLuint texcoordVB;
 extern GLuint normalVB;
 
 extern float transformAngle;
@@ -56,7 +57,7 @@ void setVertex() {
 }
 
 void setJ3AVertex() {
-	loadJ3A("C:/program1/Re_Computer_Graphics_Task/Re_Computer_Graphics_Task/banana.j3a");
+	loadJ3A("banana.j3a");
 
 	glGenBuffers(1, &triangleVB);
 	glBindBuffer(GL_ARRAY_BUFFER, triangleVB);
@@ -72,6 +73,13 @@ void setJ3AVertex() {
 	glGenBuffers(1, &indexID);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexID);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, nTriangles[0] * sizeof(u32vec3), triangles[0], GL_STATIC_DRAW);
+
+	glGenBuffers(1, &texcoordVB);
+	glBindBuffer(GL_ARRAY_BUFFER, texcoordVB);
+	glBufferData(GL_ARRAY_BUFFER, nVertices[0] * sizeof(vec2), texCoords[0], GL_STATIC_DRAW);
+
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
 }
 
 void setNormalVertex() {
